@@ -1,4 +1,42 @@
-const { Schema } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
+
+
+const reviewSchema = new Schema(
+    {
+        name: {
+            type: String,
+            required: true
+        },
+        rating: {
+            type: Number,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: (timestamp) => {
+                let date = new Date(timestamp);
+                return date.toLocaleString();
+            },
+        },
+        user: {
+            type: Schema.Types.objectId,
+            required: true,
+            ref: 'User'
+        }
+    },
+    {
+        toJSON:{
+            virtuals: true,
+            getters: true
+        }
+    }
+);
+
 
 const animeSchema = new Schema (
     {
@@ -23,9 +61,12 @@ const animeSchema = new Schema (
         },
         title: {
             type: String,
-            required: true
-        }
+            required: true          
+        },
+        reviews: [reviewSchema]
     }
 );
 
-module.exports = animeSchema;
+const Anime = model('Anime', animeSchema)
+
+module.exports = Anime;
