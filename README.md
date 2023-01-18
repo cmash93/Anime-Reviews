@@ -1,7 +1,6 @@
 # Anime-Reviews
 
 BACKEND - tuesday
-- config
 - server.js
 - models
 - controllers
