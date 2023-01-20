@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
 const animeSchema = new Schema (
     {
@@ -23,6 +23,4 @@ const animeSchema = new Schema (
     }
 );
 
-const Anime = model('Anime', animeSchema)
-
-module.exports = Anime;
+module.exports = animeSchema;
