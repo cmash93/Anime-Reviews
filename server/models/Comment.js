@@ -1,20 +1,23 @@
 const { Schema, model } = require('mongoose');
 
 const commentSchema = new Schema({
+
+    commentText: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (timestamp) => {
+            var date = new Date(timestamp);
+            return date.toLocaleString();
+        }
+    },
     username: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        type: String,
+        required: true
     },
-    postId: {
-        type: String, 
-    },
-    responseTo: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    content: {
-        type: String
-    }
 },
 { timestamps: true });
 
