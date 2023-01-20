@@ -11,8 +11,8 @@ module.exports = {
 
         if (!foundUser) {
             return res.status(400).json({ message: 'Cannot find any user with this id' });
-          }
-          res.json(foundUser);
+        }
+        res.json(foundUser);
     },
 
     async createUser({ body}, res) {
