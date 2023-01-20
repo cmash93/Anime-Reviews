@@ -17,7 +17,7 @@ function NavBar() {
             <ul class='nav-links'>
                 <div class='nav-menu'>
                     <li class='searchAnime'><a href=''>Search Anime</a></li>
-                    <li class='savedAnime'><a href=''>Saved Anime</a></li>
+                    <li class='userProfile'><a href=''>Profile</a></li>
                     {/* {{#if logged_in}} */}
                     <li class=''>Logout</li>
                     {/* {{else}} */}
