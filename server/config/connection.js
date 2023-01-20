@@ -1,7 +1,6 @@
-const { createPromptModule } = require('inquirer');
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Anime', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

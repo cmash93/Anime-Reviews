@@ -13,7 +13,7 @@ router.route('/').post(createUser).put(authMiddleware, saveAnime);
 
 router.route('/login').post(login);
 
-router.route('/me').get(authMiddleware, getSingleUser);
+router.route('/:id').get(getSingleUser);
 
 router.route('/anime/:animeId').delete(authMiddleware, deleteAnime);
 

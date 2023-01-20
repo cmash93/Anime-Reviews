@@ -16,5 +16,5 @@ if (process.env.NODE_ENV === 'production') {
 app.use(routes);
 
 db.once('open', () => {
-    app.listen(PORT, () => console.log('Now Listening on localhost:${PORT}'));
+    app.listen(PORT, () => console.log(`Now Listening on localhost:${PORT}`));
 });

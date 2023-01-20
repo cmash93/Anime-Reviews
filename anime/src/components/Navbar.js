@@ -4,15 +4,11 @@ import React, { useState } from 'react';
 function NavBar() {
     const [visible, setVisible] = useState(false)
   
-    const showDrawer = () => {
-      setVisible(true)
-    };
-  
     const onClose = () => {
       setVisible(false)
     };
 
-
+/* const Navbar = () => { */
     return (
         <nav class='navbar'>
             <div class='navbar-logo'>
@@ -31,9 +27,8 @@ function NavBar() {
                 </div>
             </ul>
         </nav>
-
-
-
     )
 
 }
+
+export default NavBar;
