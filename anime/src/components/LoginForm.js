@@ -1,142 +1,94 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";import { Formik } from 'formik';
-import * as Yup from 'yup';
-import { Form, Icon, Input, Button, Checkbox, Typography } from 'antd';
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
+// import { useDispatch } from 'react-redux';
+import { fromGraphQLError } from 'apollo-server-errors';
+import { Form, Button, Alert } from 'react-bootstrap';
+import { LOGIN_USER } from '../utils/mutations';
 
 
 const { Title } = Typography;
 
-function LoginPage(props) {
-    const dispatch = useDispatch();
-    const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
-  
-    const [formErrorMessage, setFormErrorMessage] = useState('')
-    const [rememberMe, setRememberMe] = useState(rememberMeChecked)
-  
-    const handleRememberMe = () => {
-      setRememberMe(!rememberMe)
-    };
+const LoginForm = () => {
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
-    const initialEmail = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '';
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
 
-return (
-    <Formik
-      initialValues={{
-        email: initialEmail,
-        password: '',
-      }}
-      validationSchema={Yup.object().shape({
-        email: Yup.string()
-          .email('Email is invalid')
-          .required('Email is required'),
-        password: Yup.string()
-          .min(6, 'Password must be at least 6 characters')
-          .required('Password is required'),
-      })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          let dataToSubmit = {
-            email: values.email,
-            password: values.password
-          };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-          dispatch(loginUser(dataToSubmit))
-            .then(response => {
-              if (response.payload.loginSuccess) {
-                window.localStorage.setItem('userId', response.payload.userId);
-                if (rememberMe === true) {
-                  window.localStorage.setItem('rememberMe', values.id);
-                } else {
-                  localStorage.removeItem('rememberMe');
-                }
-                props.history.push("/");
-              } else {
-                setFormErrorMessage('Check out your Account or Password again')
-              }
-            })
-            .catch(err => {
-              setFormErrorMessage('Check out your Account or Password again')
-              setTimeout(() => {
-                setFormErrorMessage("")
-              }, 3000);
-            });
-          setSubmitting(false);
-        }, 500);
-      }}
-    >
-      {props => {
-        const {
-          values,
-          touched,
-          errors,
-          isSubmitting,
-          handleChange,
-          handleBlur,
-          handleSubmit
-        } = props;
-        return (
-          <div className="app">
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
-            <Title level={2}>Log In</Title>
-            <form onSubmit={handleSubmit} style={{ width: '350px' }}>
+    try {
+      const response = await loginUser(useFormData);
 
-              <Form.Item required>
-                <Input
-                  id="email"
-                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="Enter your email"
-                  type="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.email && touched.email ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.email && touched.email && (
-                  <div className="input-feedback">{errors.email}</div>
-                )}
-              </Form.Item>
+      if (!response.ok) {
+        throw new Error('Something went wrong!')
+      }
 
-              <Form.Item required>
-                <Input
-                  id="password"
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="Enter your password"
-                  type="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.password && touched.password ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.password && touched.password && (
-                  <div className="input-feedback">{errors.password}</div>
-                )}
-              </Form.Item>
+      const { token, user } = await response.json();
+      console.log(user);
+      Auth.login(token);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
 
-              {formErrorMessage && (
-                <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>
-              )}
+    setUserFormData({
+      username: '',
+      email: '',
+      password: '',
+    });
+  };
 
-              <Form.Item>
-                <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe}  >Remember me</Checkbox>
-                <a className="login-form-forgot" href="/reset_user" style={{ float: 'right', color: '' }}>
-                  forgot password
-                  </a>
-                <div>
-                  <Button htmlType="submit" className="login-form-button" style={{ minWidth: '100%', backgroundColor: '#BD0A28', color: 'white' }} disabled={isSubmitting} onSubmit={handleSubmit}>
-                    Log in
-                </Button>
-                </div>
-                Or <a href="/register" style={{ color: '' }}>register now</a>
-              </Form.Item>
-            </form>
-          </div>
-        );
-      }}
-    </Formik>
+  return (
+  <>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+          Something went wrong with your login credentials!
+        </Alert>
+        <Form.Group>
+          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Your email'
+            name='email'
+            onChange={handleInputChange}
+            value={userFormData.email}
+            required
+          />
+          <Form.Control.Feedback type='invalid'> Email is required!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group> 
+        <Form.Label htmlFor='password'>Password</Form.Label>
+        <Form.Control
+          type='password'
+          placeholder='Your password'
+          name='password'
+          onChange={handleInputChange}
+          value={userFormData.password}
+          required
+        />
+        <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+        </Form.Group>
+        <Button
+          disabled={!(userFormData.email && userFormData.password)}
+          type='submit'
+          variant='success'>
+          Submit
+        </Button>
+      </Form>
+    </>
   );
 };
+
+export default LoginForm;
