@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  createHttpLink,
+  ApolloClient,
+  InMemoryCache, 
+  ApolloProvider
+} from '@apollo/client';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import SearchAnime from './pages/SearchAnime';
+import Profile from './pages/Profile';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+
+
+
+
+const client = new ApolloClient({
+  request: (operation) => {
+    const token = localStorage.getItem("id_token");
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    });
+  },
+
+  urt: "/grahpql",
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Router>
+        <>
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={Profile} />
+          <Route exact path='/' component={SearchAnime} />
+        </Switch>
+        <Footer />
+        
+        </>
+      </Router>
+    </ApolloProvider>
   );
 }
 
