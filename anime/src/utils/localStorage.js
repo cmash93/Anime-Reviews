@@ -6,7 +6,7 @@ export const getSavedAnimeIds = () => {
     return savedAnimeIds;
   };
   
-  export const saveAnimeIds = (animeIdArr) => {
+  export const saveAnimeId = (animeIdArr) => {
     if (animeIdArr.length) {
       localStorage.setItem('saved_animes', JSON.stringify(animeIdArr));
     } else {
@@ -27,4 +27,4 @@ export const getSavedAnimeIds = () => {
     localStorage.setItem('saved_animes', JSON.stringify(updatedSavedAnimeIds));
   
     return true;
-  };
+  }

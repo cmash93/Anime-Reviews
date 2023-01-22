@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-  createHttpLink,
   ApolloClient,
-  InMemoryCache, 
-  ApolloProvider
+  ApolloProvider,
+  InMemoryCache,
+  createHttpLink
 } from '@apollo/client';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { setContext } from '@apollo/client/link/context'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import SearchAnime from './pages/SearchAnime';
 import Profile from './pages/Profile';
@@ -14,20 +15,35 @@ import Footer from './components/Footer';
 
 
 
+const httpLink = createHttpLink({
+  uri: "http://localhost:3001/graphql",
+});
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("id_token");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
 
 const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem("id_token");
+  // request: (operation) => {
+  //   const token = localStorage.getItem("id_token");
 
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    });
-  },
+  //   operation.setContext({
+  //     headers: {
+  //       authorization: token ? `Bearer ${token}` : "",
+  //     },
+  //   });
+  // },
 
-  urt: "/grahpql",
+  // urt: "/grahpql",
+
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 function App() {
@@ -36,10 +52,10 @@ function App() {
       <Router>
         <>
         <Navbar />
-        <Switch>
+        <Routes>
           <Route exact path='/' component={Profile} />
           <Route exact path='/' component={SearchAnime} />
-        </Switch>
+        </Routes>
         <Footer />
         
         </>
