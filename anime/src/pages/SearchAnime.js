@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Container, Col, Form, Button, Card } from 'react-bootstrap';
+import CardColumns from 'react-bootstrap/CardColumns';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import Auth from '../utils/auth';
-import { searchAnimeApi } from '../utils/API';
-import { saveAnimeIds, getSavedAnimeIds } from '../utils/localStorage';
+import { searchAnimeApi } from '../utils/api';
+import { saveAnimeId, getSavedAnimeIds } from '../utils/localStorage';
 
 import { SAVE_ANIME } from '../utils/mutations';
 import { useMutation } from '@apollo/client'
 
-const SearchAnimes = () => {
+const SearchAnime = () => {
     const [searchedAnimes, setSearchedAnimes] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [savedAnimeIds, setSavedAnimeIds] = useState(getSavedAnimeIds());
     const [saveAnime] = useMutation(SAVE_ANIME)
 
     useEffect(() => {
-        return () => saveAnimeIds(savedAnimeIds);
+        return () => saveAnimeId(savedAnimeIds);
     });
 
     const handleFormSubmit = async (event) => {
@@ -49,7 +51,7 @@ const SearchAnimes = () => {
         }
     };
 
-    const handleSaveAnime = async (anime) => {
+    const handleSaveAnime = async (animeId) => {
         const animeToSave = searchedAnimes.find((anime) => anime.animeId === animeId);
 
         const token = Auth.loggedIn() ? Auth.getToken() : null;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { Container, Card, Button } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client'
+import CardColumns from 'react-bootstrap/CardColumns';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import Auth from '../utils/auth';
 import { removeAnimeId, saveAnimeId } from '../utils/localStorage';
@@ -13,7 +15,7 @@ const SavedAnime = () => {
 
     const userData = data?.me || []
 
-    const handleDeleteAnime = async (anime) => {
+    const handleDeleteAnime = async (animeId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
