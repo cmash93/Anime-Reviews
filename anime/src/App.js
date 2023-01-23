@@ -12,6 +12,7 @@ import SearchAnime from './pages/SearchAnime';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import './index.css';
 
 
 
@@ -53,7 +54,7 @@ function App() {
         <>
         <Navbar />
         <Routes>
-          <Route exact path='/' component={Profile} />
+          <Route exact path='/profile' component={Profile} />
           <Route exact path='/' component={SearchAnime} />
         </Routes>
         <Footer />
