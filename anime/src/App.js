@@ -31,18 +31,6 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  // request: (operation) => {
-  //   const token = localStorage.getItem("id_token");
-
-  //   operation.setContext({
-  //     headers: {
-  //       authorization: token ? `Bearer ${token}` : "",
-  //     },
-  //   });
-  // },
-
-  // urt: "/grahpql",
-
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
@@ -54,8 +42,8 @@ function App() {
         <>
         <Navbar />
         <Routes>
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path='/' component={SearchAnime} />
+          <Route exact path='/profile' element={<Profile />} />
+          <Route exact path='/' element={<SearchAnime />} />
         </Routes>
         <Footer />
         

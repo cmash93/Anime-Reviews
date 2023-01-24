@@ -74,7 +74,7 @@ const SearchAnime = () => {
 
     return (
         <>
-            <Jumbotron class='searchAnimeHeader'>
+            <Jumbotron className='searchAnimeHeader'>
                 <Container>
                     <h1>Wanna search for some Anime? well, you'll do it right here, right below where all this is written! Crazy stuff am I right??</h1>
                     <Form onSubmit={handleFormSubmit}>

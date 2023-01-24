@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Anime } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 
@@ -14,6 +14,9 @@ const resolvers = {
             }
 
             throw new AuthenticationError("Not logged in");
+        },
+        anime: async () => {
+            return Anime.find({});
         },
     },
     Mutation: {
