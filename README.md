@@ -37,7 +37,7 @@
 - [![Bootstrap][bootstrap.com]][bootstrap-url]
 
 ## Screenshot
-![Kawaii Girl](./anime/public/assets/animesenpai.png)
+![Kawaii Girl](./anime/src/assets/animesenpai.png)
 
 <!-- GETTING STARTED -->
 
