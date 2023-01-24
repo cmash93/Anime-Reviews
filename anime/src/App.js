@@ -45,8 +45,6 @@ function App() {
           <Route exact path='/saved' element={<Profile />} />
           <Route exact path='/' element={<SearchAnime />} />
         </Routes>
-        <Footer />
-        
         </>
       </Router>
     </ApolloProvider>

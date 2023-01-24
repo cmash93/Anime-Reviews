@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(../public/assets/kawaii.png);
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-position: top;
 }
 
 code {
@@ -12,8 +16,8 @@ code {
     monospace;
 }
 
-.footer {
-  display: flex;
+/* .footer {
+  display: flex ;
   position: bottom;
   align-items: center;
   justify-content: center;
@@ -21,9 +25,16 @@ code {
   text-align: center;
   margin-top: auto;
   margin-bottom: auto;
-  background-image: url(./animewallpaper.png);
   height: 100%;
-  width: 100%;
+  width: 100%;  */
+
+/* position:absolute;
+/* display: flex;
+bottom:0;
+margin-left: 650px; */
+
+.footer-content {
+  margin-top: 10px;
 }
 
 .searchBtn {

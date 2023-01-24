@@ -9,20 +9,16 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
-  <a href="https://github.com/cmash93/Anime-Senpai">
-    <img src="" alt="Logo" width="180" height="180">
-  </a>
 
 <h1 style="font-size:35px;" align="center">Anime Senpai</h1>
 
   <p align="center" style="font-size:18px;">
-    On Anime Senpai users can create an account and search any anime they want to watch. They can also save their favorite shows. Simply create an account or login in, search an anime and save to watch now or later! 
+    On Anime Senpai users can create an account and search any anime they want to know more about! They can also save their favorite shows to a watchlist. Simply create an account or login in, search an anime and save to watch now or later! 
     <br />
     <a href="https://github.com/cmash93/Anime-Senpai"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="" target="_blank" >Live Website</a>
+    <a href="https://anime-senpai.herokuapp.com/" target="_blank" >Live Website</a>
         ·
     <a href="https://github.com/cmash93/Anime-Senpai/issues">Report Bug</a>
     ·
@@ -36,10 +32,12 @@
 
 - [![Node][node.js]][node-url]
 - [![Express][express]][express-url]
-- [![Sequelize][sequelize]][sequelize-url]
-- [![MYSQL][mysql]][mysql-url]
-- [![Handlebars][handlebars]][handlebars-url]
+- [![React][react.js]][react-url]
+- [![Mongoose][mongoose]][mongoose-url]
 - [![Bootstrap][bootstrap.com]][bootstrap-url]
+
+## Screenshot
+![Kawaii Girl](./anime/public/assets/animesenpai.png)
 
 <!-- GETTING STARTED -->
 
@@ -126,7 +124,7 @@ Anime-Senpai: [https://github.com/cmash93/Anime-Senpai](https://github.com/cmash
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/courtneyashleyfarzam
 [product-screenshot]: images/screenshot.png
-[node.js]: https://img.shields.io/badge/node.js-000000?style=for-the-badge&logo=nodedotjs&logoColor=white
+[node.js]: https://img.shields.io/badge/node.js-DD0031?style=for-the-badge&logo=nodedotjs&logoColor=white
 [node-url]: https://nodejs.org/en/
 [react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [react-url]: https://reactjs.org/
@@ -150,5 +148,8 @@ Anime-Senpai: [https://github.com/cmash93/Anime-Senpai](https://github.com/cmash
 [mysql-url]: https://www.mysql.com/
 [handlebars]: https://img.shields.io/badge/Handlebars-ffffff?style=for-the-badge&logo=html&logoColor=black
 [handlebars-url]: https://handlebarsjs.com/
+[mongoose]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[mongoose-url]: https://mongoosejs.com/docs/
+
 
 
