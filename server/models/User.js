@@ -20,7 +20,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        savedAnime: [animeSchema]
+        /* savedAnime: [animeSchema] */
     },
     {
         toJSON: {
