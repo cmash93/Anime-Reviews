@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div className='footer'>
             <div className='footer-content'>
-                <h3>AniMake an Anime Review</h3>
+                <h4>AniMake an Anime Review</h4>
                 <p>copyright &copy;2022 <a href='/'>AniMake an Anime Review</a> </p>
             </div>
         </div>

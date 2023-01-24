@@ -8,15 +8,11 @@ const resolvers = {
             if (context.user) {
             const userData = await User.findOne({ _id: context.user._id })
                 .select("-__v -password")
-                .populate("anime");
 
             return userData;
             }
 
             throw new AuthenticationError("Not logged in");
-        },
-        anime: async () => {
-            return Anime.find({});
         },
     },
     Mutation: {
@@ -46,12 +42,11 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        saveAnime: async (parent, args, context) => {
+        saveAnime: async (parent, { input }, context) => {
             if (context.user) {
-            const updatedUser = await User.findByIdAndUpdate(
+            const updatedUser = await User.findOneAndUpdate(
                 { _id: context.user._id },
-                // take the input type to replace "body" as the arguement
-                { $addToSet: { savedAnime: args.input } },
+                { $addToSet: { savedAnime: input } },
                 { new: true, runValidators: true }
             );
 
@@ -60,11 +55,11 @@ const resolvers = {
 
             throw new AuthenticationError("You need to be logged in!");
         },
-        removeAnime: async (parent, args, context) => {
+        removeAnime: async (parent, { animeId }, context) => {
             if (context.user) {
             const updatedUser = await User.findOneAndUpdate(
                 { _id: context.user._id },
-                { $pull: { savedAnime: { animeId: args.animeId } } },
+                { $pull: { savedAnime: { animeId: animeId } } },
                 { new: true }
             );
 

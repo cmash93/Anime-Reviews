@@ -23,29 +23,16 @@ code {
   margin-bottom: auto;
 }
 
-/* Footer {
-  display: flex;
-  position: bottom;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-} */
-
-/* .footer-content{
-
-  display: flex;
-  position: bottom;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: auto;
-} */
-
 Button {
-  margin-top: 20px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  width: 20%;
+  margin: 1rem;
+}
+
+card-text {
+  overflow-y: scroll;
 }
