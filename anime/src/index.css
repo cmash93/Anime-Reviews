@@ -21,11 +21,16 @@ code {
   text-align: center;
   margin-top: auto;
   margin-bottom: auto;
+  background-image: url(./animewallpaper.png);
+  height: 100%;
+  width: 100%;
 }
 
-Button {
+.searchBtn {
   margin-top: 2rem;
   margin-bottom: 2rem;
+  margin-left: 50%;
+  width: 200%;
 }
 
 .card {
@@ -35,4 +40,16 @@ Button {
 
 card-text {
   overflow-y: scroll;
+}
+
+.searchAnime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.searchBar {
+  width: 200%;
+  margin-left: -50%;
 }
