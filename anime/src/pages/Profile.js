@@ -55,7 +55,7 @@ const SavedAnime = () => {
                         ? `Viewing ${userData.savedAnime.length} saved ${userData.savedAnime.length === 1 ? 'anime title' : 'anime titles'}:`
                         : 'You have no saved anime!'}
                 </h2>
-                <CardColumns>
+                <CardColumns className='row'>
                     {userData.savedAnime.map((anime) => {
                         return (
                             <Card key={anime.animeId} border='dark'>

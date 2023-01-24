@@ -82,7 +82,7 @@ const SearchAnime = () => {
 
     return (
         <>
-            <Jumbotron className='searchAnimeHeader'>
+            <Jumbotron fluid className='text-light bg-dark'>
                 <Container>
                     <h1>Wanna search for some Anime? well, you'll do it right here, right below where all this is written! Crazy stuff am I right??</h1>
                     <Form onSubmit={handleFormSubmit}>
@@ -94,12 +94,12 @@ const SearchAnime = () => {
                                     onChange={(e) => setSearchInput(e.target.value)}
                                     type='text'
                                     size='lg'
-                                    placeholder='Search for a book'
+                                    placeholder='Search for an Anime'
                                 />
                             </Col>
                             <Col xs={12} md={4}>
-                                <Button type='submit'>
-                                    Submit Search
+                                <Button type='submit' variant='success' size='lg'>
+                                    Search
                                 </Button>
                             </Col>
                         </Form.Row>
@@ -113,26 +113,29 @@ const SearchAnime = () => {
                         ? `Viewing ${searchedAnimes.length} results:`
                         : 'Search for an Anime to begin'}
                 </h2>
-                <CardColumns>
+                <CardColumns className='row'>
                     {searchedAnimes.map((anime) => {
                         return (
-                            <Card key={anime.animeId}>
+                            <Card key={anime.animeId} border='dark'>
                                 {anime.image ? (
-                                    <Card.Img src={anime.image} alt={`The thumbnail for ${anime.title}`} />
+                                    <Card.Img src={anime.image} alt={`The thumbnail for ${anime.title}`} variant='top' />
                                 ) : null}
                                 <Card.Body>
                                     <Card.Title>{anime.title}</Card.Title>
                                     <Card.Text>{anime.description}</Card.Text>
-                                    {Auth.loggedIn() && (
-                                        <Button
-                                            disabled={savedAnimeIds?.some((savedAnimeId) => savedAnimeId === anime.animeId)}
-                                            className='searchAnimeBtn'
-                                            onClick={() => handleSaveAnime(anime.animeId)}>
-                                            {savedAnimeIds?.some((savedAnimeId) => savedAnimeId === anime.animeId)
-                                                ? 'This Anime has already been saved!'
-                                                : 'Save this Anime!'}
-                                        </Button>
-                                    )}
+                                    <Card.Footer>
+                                        {Auth.loggedIn() && (
+                                            <Button
+                                                disabled={savedAnimeIds?.some((savedAnimeId) => savedAnimeId === anime.animeId)}
+                                                className='btn-block btn-info'
+                                                onClick={() => handleSaveAnime(anime.animeId)}>
+                                                {savedAnimeIds?.some((savedAnimeId) => savedAnimeId === anime.animeId)
+                                                    ? 'This Anime has already been saved!'
+                                                    : 'Save this Anime!'}
+                                            </Button>
+                                        )}
+                                    </Card.Footer>
+
                                 </Card.Body>
                             </Card>
                         );
