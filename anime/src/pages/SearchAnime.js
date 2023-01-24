@@ -83,12 +83,13 @@ const SearchAnime = () => {
     return (
         <>
             <Jumbotron fluid className='text-light bg-dark'>
-                <Container>
-                    <h1>Wanna search for some Anime? well, you'll do it right here, right below where all this is written! Crazy stuff am I right??</h1>
+                <Container className='searchAnime'>
+                    <h1 className='searchHeader'>Search for an Anime to begin!</h1>
                     <Form onSubmit={handleFormSubmit}>
                         <Form.Row>
-                            <Col xs={12} md={8}>
+                            <Col xs={12} md={12}>
                                 <Form.Control
+                                    className='searchBar'
                                     name='searchInput'
                                     value={searchInput}
                                     onChange={(e) => setSearchInput(e.target.value)}
@@ -98,7 +99,7 @@ const SearchAnime = () => {
                                 />
                             </Col>
                             <Col xs={12} md={4}>
-                                <Button type='submit' variant='success' size='lg'>
+                                <Button className='searchBtn' type='submit' variant='success' size='lg'>
                                     Search
                                 </Button>
                             </Col>
@@ -111,7 +112,7 @@ const SearchAnime = () => {
                 <h2>
                     {searchedAnimes.length
                         ? `Viewing ${searchedAnimes.length} results:`
-                        : 'Search for an Anime to begin'}
+                        : ''}
                 </h2>
                 <CardColumns className='row'>
                     {searchedAnimes.map((anime) => {
