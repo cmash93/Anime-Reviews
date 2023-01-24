@@ -15,7 +15,7 @@ const AppNavbar = () => {
             <Navbar bg='dark' variant='dark' expand='lg'>
                 <Container fluid>
                     <Navbar.Brand as={Link} to='/'>
-                        Anime Search
+                        Anime Senpai
                     </Navbar.Brand>
 
                     <Navbar.Toggle aria-controls='navbar' />
