@@ -26,21 +26,23 @@ const SearchAnime = () => {
         if (!searchInput) {
             return false;
         }
+        console.log(searchInput)
 
         try {
-            const response = await searchAnimeApi(searchInput);
-
+            const response = await fetch(`https://api.jikan.moe/v4/anime?q=${searchInput}&limit=20`);
+    
             if (!response.ok) {
                 throw new Error('something went wrong');
             }
 
-            const { items } = await response.json();
-
-            const animeData = items.map((anime) => ({
-                animeId: anime.id,
-                title: anime.volumeInfo.title,
-                description: anime.volumeInfo.description,
-                image: anime.volumeInfo.imageLinks?.thumbnail || '',
+            const resData = await response.json();
+            console.log(response)
+            console.log(resData)
+            const animeData = resData.data.map((anime) => ({
+                animeId: anime.mal_id,
+                title: anime.title,
+                description: anime.synopsis,
+                image: anime.images.jpg.large_image_url || '',
             }));
             // WE WILL NEED TO UPDATE BASED ON THE API 
 
@@ -52,7 +54,7 @@ const SearchAnime = () => {
     };
 
     const handleSaveAnime = async (animeId) => {
-        const animeToSave = searchedAnimes.find((anime) => anime.animeId === animeId);
+        const animeToSave = searchedAnimes.find((anime) => anime.mal_id === animeId.mal_id);
 
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
