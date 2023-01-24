@@ -25,16 +25,14 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
 `;
 
 export const SAVE_ANIME = gql`
-mutation saveAnime($input: savedAnime!) {
-    saveAnime (input: $input) {
+mutation saveAnime($input: SavedAnimeInput) {
+    saveAnime(input: $input) {
         _id
         username
-        email
         animeCount
         savedAnime {
-            #_id
-            description
             animeId
+            description
             image
             link
             title
@@ -44,14 +42,12 @@ mutation saveAnime($input: savedAnime!) {
 `;
 
 export const REMOVE_ANIME = gql`
-mutation removeAnime($animeId: ID!) {
-    removeAnime (animeId: $animeId) {
+mutation removeAnime($animeId: String!) {
+    removeAnime(animeId: $animeId) {
         _id
         username
-        email
         animeCount
         savedAnime {
-            #_id
             description
             animeId
             image

@@ -4,7 +4,7 @@ import CardColumns from 'react-bootstrap/CardColumns';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import Auth from '../utils/auth';
-import { searchAnimeApi } from '../utils/api';
+// import { searchAnimeApi } from '../utils/api';
 import { saveAnimeId, getSavedAnimeIds } from '../utils/localStorage';
 
 import { SAVE_ANIME } from '../utils/mutations';
@@ -14,11 +14,12 @@ const SearchAnime = () => {
     const [searchedAnimes, setSearchedAnimes] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [savedAnimeIds, setSavedAnimeIds] = useState(getSavedAnimeIds());
-    const [saveAnime] = useMutation(SAVE_ANIME)
 
     useEffect(() => {
         return () => saveAnimeId(savedAnimeIds);
     });
+
+    const [saveAnime, { error }] = useMutation(SAVE_ANIME)
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -30,14 +31,13 @@ const SearchAnime = () => {
 
         try {
             const response = await fetch(`https://api.jikan.moe/v4/anime?q=${searchInput}&limit=20`);
-    
+
             if (!response.ok) {
                 throw new Error('something went wrong');
             }
 
             const resData = await response.json();
-            console.log(response)
-            console.log(resData)
+
             const animeData = resData.data.map((anime) => ({
                 animeId: anime.mal_id,
                 title: anime.title,
@@ -54,7 +54,7 @@ const SearchAnime = () => {
     };
 
     const handleSaveAnime = async (animeId) => {
-        const animeToSave = searchedAnimes.find((anime) => anime.mal_id === animeId.mal_id);
+        const animeToSave = searchedAnimes.find((anime) => anime.animeId === animeId);
 
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -63,9 +63,15 @@ const SearchAnime = () => {
         }
 
         try {
-            await saveAnime({
-                variables: { input: animeToSave }
+            const response = await saveAnime({
+                variables: {
+                    input: animeToSave,
+                },
             });
+
+            if (!response) {
+                throw new Error('Something went wrong!')
+            }
 
             setSavedAnimeIds([...savedAnimeIds, animeToSave.animeId]);
         } catch (err) {

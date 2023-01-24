@@ -44,7 +44,7 @@ const SavedAnime = () => {
 
     return (
         <>
-            <Jumbotron fluid class='text-light bg-dark'>
+            <Jumbotron fluid className='text-light bg-dark'>
                 <Container>
                     <h1>Viewing Saved Anime</h1>
                 </Container>
@@ -62,9 +62,9 @@ const SavedAnime = () => {
                                 {anime.image ? <Card.Img src={anime.image} alt={`The cover for ${anime.title}`} /> : null}
                                 <Card.Body>
                                     <Card.Title>{anime.title}</Card.Title>
-                                    <p class='director'> {anime.directors}</p>
+                                    <p className='director'> {anime.directors}</p>
                                     <Card.Text>{anime.description}</Card.Text>
-                                    <Button class='' onClick={() => handleDeleteAnime(anime.animeId)}>
+                                    <Button className='' onClick={() => handleDeleteAnime(anime.animeId)}>
                                         Delete this Anime!
                                     </Button>
                                 </Card.Body>

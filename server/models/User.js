@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const animeSchema = require('./Anime');
 
 const userSchema = new Schema(
     {
@@ -18,10 +19,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        savedAnime: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Anime'
-        }]
+        savedAnime: [animeSchema]
     },
     {
         toJSON: {

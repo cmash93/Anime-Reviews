@@ -42,7 +42,7 @@ function App() {
         <>
         <Navbar />
         <Routes>
-          <Route exact path='/profile' element={<Profile />} />
+          <Route exact path='/saved' element={<Profile />} />
           <Route exact path='/' element={<SearchAnime />} />
         </Routes>
         <Footer />
