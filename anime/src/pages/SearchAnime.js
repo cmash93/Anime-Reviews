@@ -98,7 +98,7 @@ const SearchAnime = () => {
                                     placeholder='Search for an Anime'
                                 />
                             </Col>
-                            <Col xs={12} md={4}>
+                            <Col xs={12} md={4} className='searchBtnContainer'>
                                 <Button className='searchBtn' type='submit' variant='success' size='lg'>
                                     Search
                                 </Button>
