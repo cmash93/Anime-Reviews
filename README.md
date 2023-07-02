@@ -15,14 +15,14 @@
   <p align="center" style="font-size:18px;">
     On Anime Senpai users can create an account and search any anime they want to know more about! They can also save their favorite shows to a watchlist. Simply create an account or login in, search an anime and save to watch now or later! 
     <br />
-    <a href="https://github.com/cmash93/Anime-Senpai"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/courtneyfarzam/Anime-Senpai"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://anime-senpai.herokuapp.com/" target="_blank" >Live Website</a>
         ·
-    <a href="https://github.com/cmash93/Anime-Senpai/issues">Report Bug</a>
+    <a href="https://github.com/courtneyfarzam/Anime-Senpai/issues">Report Bug</a>
     ·
-    <a href="https://github.com/cmash93/Anime-Senpai/issues">Request Feature</a>
+    <a href="https://github.com/courtneyfarzam/Anime-Senpai/issues">Request Feature</a>
   </p>
 </div>
 
@@ -100,11 +100,11 @@ Distributed under the MIT License.
 
 ## Creators
 
-Courtney Ashley Farzam - cmash93@outlook.com    
+Courtney Ashley Farzam - courtneyfarzam@gmail.com    
 Elham Hamzapour - ehamzapour@gmail.com    
 David Greenhouse - dgreenhouse96@gmail.com   
 
-Anime-Senpai: [https://github.com/cmash93/Anime-Senpai](https://github.com/cmash93/Anime-Senpai)
+Anime-Senpai: [https://github.com/courtneyfarzam/Anime-Senpai](https://github.com/courtneyfarzam/Anime-Senpai)
 
 <!-- ACKNOWLEDGMENTS -->
 
