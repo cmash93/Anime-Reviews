@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url(./assets/kawaii.png);
+  background-size: cover;
   background-attachment: fixed;
   background-repeat: repeat;
   background-position: top;
@@ -16,32 +17,13 @@ code {
     monospace;
 }
 
-/* .footer {
-  display: flex ;
-  position: bottom;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  height: 100%;
-  width: 100%;  */
-
-/* position:absolute;
-/* display: flex;
-bottom:0;
-margin-left: 650px; */
 
 .footer-content {
   margin-top: 10px;
 }
 
 .searchBtn {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  margin-left: 50%;
-  width: 200%;
+  margin: 2rem 5rem;
 }
 
 .card {
@@ -60,7 +42,18 @@ card-text {
   flex-direction: column;
 }
 
-.searchBar {
-  width: 200%;
-  margin-left: -50%;
+@media(max-width: 767px) {
+  .searchBtn, .searchBar {
+      width: auto;
+  }
+
+  .row {
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  .card {
+    width: auto;
+  }
+
 }

@@ -11,13 +11,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import SearchAnime from './pages/SearchAnime';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import './index.css';
 
 
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
